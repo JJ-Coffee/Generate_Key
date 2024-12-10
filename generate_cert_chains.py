@@ -9,16 +9,16 @@ import os
 import sys
 
 # Default subject details for the certificates. Customize as needed.
-DETAILS = "/C=US/ST=Texas/L=Austin/O=Fuck Google Inc./OU=INT/CN=Fuck Google"
+DETAILS = "/C=US/ST=Texas/L=Austin/O=JJ Inc./OU=INT/CN=JJ"
 
 # Add subject details for each certificate in the chain. The end certificate subject is added automatically
 # Example: ["/serialNumber=f92009e853b6b045","/title=TEE/serialNumber=5df398e7946db5ded47290cbb43c5028","/title=TEE/serialNumber=54d54a126a783bc9cba8c06137136943"]
-SUBJECTS = []
+SUBJECTS = ["/serialNumber=f92009e853b6b045","/title=TEE/serialNumber=8deef3c63869c927d955f3a9680fb83d","/title=TEE/serialNumber=3d2036a5c8c8c976ab0b570328a08150"]
 SUBJECTS_POINTER = 0
 # Default end subject for the end certificate. Customize as needed
-END_SUBJECT = "/title=TEE/serialNumber=serial/O=org/street=str/UID=123"
+END_SUBJECT = "/title=TEE/serialNumber=serial/O=org/street=str/UID=8deef3c63869c927d955f3a9680fb83d"
 
-DAYS = "1024"
+DAYS = "3600"
 
 ROOT_CA_KEY = "rootCA.key"
 ROOT_CA_CERT = "rootCA.pem"
