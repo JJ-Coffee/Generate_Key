@@ -1,9 +1,8 @@
 name: Generate Keybox
 
 on:
-  push:
-    branches:
-      - main
+  watch:
+    types: [started]
   workflow_dispatch:
 
 jobs:
