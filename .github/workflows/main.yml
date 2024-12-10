@@ -1,0 +1,46 @@
+name: Generate Keybox
+
+on:
+  workflow_run:
+    workflows: ["Keybox Starter Workflow"]
+    types:
+      - completed
+
+jobs:
+  generate_keybox:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout repository
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Set up Python
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    # Install dependencies (if needed for the script)
+    #- name: Install Python dependencies
+      #run: |
+        #pip install -r requirements.txt || echo "No requirements.txt found"
+
+    # Install OpenSSL
+    - name: Install OpenSSL
+      run: sudo apt-get update && sudo apt-get install -y openssl
+      
+     - name: GENERATE CERT CHAINS
+      run: python generate_cert_chains.py
+
+    # Run generate_keybox.py script
+    - name: GENERATE KEYBOX
+      run: python generate_keybox.py -a -t
+
+    # Upload artifacts
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: keybox-files
+        path: ./keybox.xml  # Replace with specific file/folder to upload
+        
